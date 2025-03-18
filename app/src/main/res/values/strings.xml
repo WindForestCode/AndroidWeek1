@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">app1mvvm</string>
+    <string name="title_save">Save</string>
+    <string name="hint_title">Write note\'s title</string>
+    <string name="add_text">Add note</string>
+    <string name="title_delete">Delete</string>
+    <string name="hint_text">Write some text</string>
+    <string name="empty_text_error">Note\'s text cannot be blank</string>
+</resources>
