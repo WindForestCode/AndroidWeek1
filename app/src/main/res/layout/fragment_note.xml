@@ -33,6 +33,18 @@
         android:hint="@string/hint_text"
         android:inputType="text|textMultiLine"
         android:textSize="14sp"
-        tools:text="@tools:sample/lorem/random" />
+         />
+
+    <TextView
+        android:id="@+id/tvCreatedAt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text = "created at"/>
+
+    <TextView
+        android:id="@+id/tvEditedAt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="editedat"/>
 
 </LinearLayout>

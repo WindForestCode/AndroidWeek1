@@ -57,6 +57,8 @@ class NotesListFragment : Fragment() {
                             putLong(NoteFragment.ARG_NOTE_ID, note.id)
                             putString(NoteFragment.ARG_NOTE_TITLE, note.title)
                             putString(NoteFragment.ARG_NOTE_TEXT, note.text)
+                            putString(NoteFragment.ARG_NOTE_CREATED_AT, note.createdAt)
+                            putString(NoteFragment.ARG_NOTE_EDITED_AT, note.editedAt)
                         }
                     }
                     parentFragmentManager.beginTransaction()
@@ -65,9 +67,6 @@ class NotesListFragment : Fragment() {
                         .commit()
                 }
 
-//                override fun onNoteLongClicked(note: Note) {
-//                    TODO("Not yet implemented")
-//                }
             }
         )
         binding.rcView.layoutManager = GridLayoutManager(requireContext(),2)
