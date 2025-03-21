@@ -6,5 +6,7 @@
     <string name="add_text">Добавить записку</string>
     <string name="title_delete">Удалить</string>
     <string name="hint_text">Текст заметки</string>
+    <string name="faq_text">Версия 0.1</string>
     <string name="empty_text_error">Текст заметки не может быть пустым</string>
+    <string name="title_faq">О приложении</string>
 </resources>

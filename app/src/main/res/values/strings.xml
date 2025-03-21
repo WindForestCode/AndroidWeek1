@@ -4,6 +4,8 @@
     <string name="hint_title">Write note\'s title</string>
     <string name="add_text">Add note</string>
     <string name="title_delete">Delete</string>
+    <string name="title_faq">About</string>
     <string name="hint_text">Write some text</string>
+    <string name="faq_text">Version 0.1</string>
     <string name="empty_text_error">Note\'s text cannot be blank</string>
 </resources>
