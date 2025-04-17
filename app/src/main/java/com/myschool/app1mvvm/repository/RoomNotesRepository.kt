@@ -19,8 +19,8 @@ class RoomNotesRepository(private val dao: NoteDao): NotesRepository {
         dao.favoriteById(id)
     }
 
-    override fun saveNote(id: Long, title: String, text: String, createdAt: String, editedAt: String) {
-       dao.save(NoteEntity.fromNote(Note(id, title, text, createdAt, editedAt)))
+    override fun saveNote(note: Note) {
+       dao.save(NoteEntity.fromNote(note))
     }
 
     override fun deleteNote(id: Long) {

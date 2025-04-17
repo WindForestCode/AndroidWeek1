@@ -3,7 +3,6 @@ package com.myschool.app1mvvm.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.Date
 
 @Entity(tableName = "notes")
 data class NoteEntity(

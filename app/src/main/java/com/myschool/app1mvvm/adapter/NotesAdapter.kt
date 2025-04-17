@@ -27,12 +27,7 @@ class NotesAdapter(private val listener: NoteListener): ListAdapter<Note,NotesVi
             listener.onNoteClicked(note)
         }
 
-//        binding.root.setOnLongClickListener{
-//            val note = getItem(viewHolder.adapterPosition)
-//            //binding.cardLinear.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.note_pressed))
-//            listener.onNoteLongClicked(note)
-//            true
-//        }
+//     Добавить длинное нажатие
 
         binding.imageFavorite.setOnClickListener {
             listener.onFavoriteClicked(getItem(viewHolder.adapterPosition))

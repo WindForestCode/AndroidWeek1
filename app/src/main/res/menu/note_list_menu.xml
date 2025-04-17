@@ -7,6 +7,6 @@
     />-->
     <item android:title="@string/title_faq"
         android:id="@+id/menu_faq"
-        android:icon="@drawable/ic_about"
+        android:icon="@drawable/ic_faq"
         app:showAsAction="always"/>
 </menu>

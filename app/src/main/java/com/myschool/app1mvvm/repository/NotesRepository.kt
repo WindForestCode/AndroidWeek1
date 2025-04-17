@@ -6,6 +6,6 @@ import kotlinx.coroutines.flow.Flow
 interface NotesRepository {
     fun getNotes(): Flow<List<Note>>
     fun toFavorite(id: Long)
-    fun saveNote(id: Long ,title: String, text: String, createdAt: String, editedAt: String)
+    fun saveNote(note: Note)
     fun deleteNote(id: Long)
 }

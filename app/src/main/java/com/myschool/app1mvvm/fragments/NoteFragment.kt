@@ -13,11 +13,10 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.myschool.app1mvvm.R
 import com.myschool.app1mvvm.database.AppDb
 import com.myschool.app1mvvm.databinding.FragmentNoteBinding
+import com.myschool.app1mvvm.model.Note
 import com.myschool.app1mvvm.repository.RoomNotesRepository
 import com.myschool.app1mvvm.viewmodel.NoteViewModel
-import java.time.Instant
 import java.time.LocalDate
-import java.util.Date
 
 class NoteFragment : Fragment() {
     companion object{
@@ -28,11 +27,6 @@ class NoteFragment : Fragment() {
         const val ARG_NOTE_EDITED_AT = "ARG_NOTE_EDITED_AT"
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     @SuppressLint("NewApi")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +35,8 @@ class NoteFragment : Fragment() {
         val binding = FragmentNoteBinding.inflate(inflater, container, false)
 
         val viewModel by activityViewModels<NoteViewModel> {
-            viewModelFactory { initializer { NoteViewModel(RoomNotesRepository(AppDb.getInstance(requireContext().applicationContext).noteDao)) } }
+            viewModelFactory { initializer { NoteViewModel(
+                RoomNotesRepository(AppDb.getInstance(requireContext().applicationContext).noteDao)) } }
         }
 
         val id = arguments?.getLong(ARG_NOTE_ID) ?: 0L
@@ -61,8 +56,6 @@ class NoteFragment : Fragment() {
         binding.toolbarNote.setOnMenuItemClickListener {menuItem ->
             when(menuItem.itemId){
                 R.id.menu_save ->{
-                    val title = binding.edTitle.text.toString()
-                    val text = binding.edText.text.toString()
                     val created: String
                     val edited: String
                     if(createdAt == ""){
@@ -73,10 +66,10 @@ class NoteFragment : Fragment() {
                         created = createdAt
                         edited = LocalDate.now().toString()
                     }
-                    if(text.isBlank()){
+                    if(binding.edTitle.text.toString().isBlank()){
                         Toast.makeText(context, context?.getString(R.string.empty_text_error), Toast.LENGTH_SHORT).show()
                     }else{
-                        viewModel.saveNote(id, title, text, created, edited)
+                        viewModel.saveNote(Note(id, binding.edTitle.text.toString(), binding.edText.text.toString(), created, edited))
                         changeFragment()
                     }
                     true

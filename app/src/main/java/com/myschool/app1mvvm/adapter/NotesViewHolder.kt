@@ -7,13 +7,6 @@ import com.myschool.app1mvvm.model.Note
 
 class NotesViewHolder(private val binding: ItemNoteBinding): RecyclerView.ViewHolder(binding.root) {
 
-  /* fun bind(payload: NotePayload){
-       if(payload.favorite != null){
-           updateFavorite(payload.favorite)
-       }
-   }*/
-
-
     fun bind(note: Note){
         binding.tvNoteTitle.text = note.title
         binding.tvNotetext.text = note.text

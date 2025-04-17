@@ -27,8 +27,8 @@ class NoteViewModel(private val repository: NotesRepository): ViewModel() {
             .launchIn(viewModelScope)
     }
 
-    fun saveNote(id: Long, title: String, text: String, createdAt: String, editedAt: String) {
-        repository.saveNote(id, title, text, createdAt, editedAt)
+    fun saveNote(note: Note) {
+        repository.saveNote(note)
     }
     fun favorite(id: Long){
         repository.toFavorite(id)
