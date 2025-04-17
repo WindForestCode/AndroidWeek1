@@ -1,6 +1,5 @@
 package com.myschool.app1mvvm.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.myschool.app1mvvm.model.Note
@@ -17,7 +16,6 @@ class NoteViewModel(private val repository: NotesRepository): ViewModel() {
     val uiState: StateFlow<NoteUiState> = _uiState.asStateFlow()
 
     init{
-        Log.d("test", "viewModelCreated")
         repository.getNotes()
             .onEach { notes ->
                 _uiState.update{

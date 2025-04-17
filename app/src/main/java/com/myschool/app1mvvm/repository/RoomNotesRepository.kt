@@ -1,6 +1,5 @@
 package com.myschool.app1mvvm.repository
 
-import android.util.Log
 import com.myschool.app1mvvm.database.NoteDao
 import com.myschool.app1mvvm.model.Note
 import com.myschool.app1mvvm.model.NoteEntity
@@ -15,7 +14,6 @@ class RoomNotesRepository(private val dao: NoteDao): NotesRepository {
         }
 
     override fun toFavorite(id: Long) {
-        Log.d("like test", "like repository note id - $id")
         dao.favoriteById(id)
     }
 

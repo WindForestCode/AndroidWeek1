@@ -1,7 +1,6 @@
 package com.myschool.app1mvvm.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -47,7 +46,6 @@ class NotesListFragment : Fragment() {
         val adapter = NotesAdapter(
             object : NotesAdapter.NoteListener{
                 override fun onFavoriteClicked(note: Note) {
-                    Log.d("like test", "$note")
                     viewModel.favorite(note.id)
                 }
 
