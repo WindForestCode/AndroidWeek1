@@ -15,11 +15,13 @@ interface NoteDao {
     @Upsert
     fun save(note: NoteEntity): Long
 
-    @Query ("""
+    @Query(
+        """
             UPDATE notes SET
                 isFavorite = CASE WHEN isFavorite THEN 0 ELSE 1 END
             WHERE id = :id;
-        """)
+        """
+    )
     fun favoriteById(id: Long)
 
     @Query("DELETE FROM notes WHERE id = :id")

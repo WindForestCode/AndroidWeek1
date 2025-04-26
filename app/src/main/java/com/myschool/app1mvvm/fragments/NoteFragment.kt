@@ -19,7 +19,7 @@ import com.myschool.app1mvvm.viewmodel.NoteViewModel
 import java.time.LocalDate
 
 class NoteFragment : Fragment() {
-    companion object{
+    companion object {
         const val ARG_NOTE_ID = "ARG_NOTE_ID"
         const val ARG_NOTE_TITLE = "ARG_NOTE_TITLE"
         const val ARG_NOTE_TEXT = "ARG_NOTE_TEXT"
@@ -35,8 +35,13 @@ class NoteFragment : Fragment() {
         val binding = FragmentNoteBinding.inflate(inflater, container, false)
 
         val viewModel by activityViewModels<NoteViewModel> {
-            viewModelFactory { initializer { NoteViewModel(
-                RoomNotesRepository(AppDb.getInstance(requireContext().applicationContext).noteDao)) } }
+            viewModelFactory {
+                initializer {
+                    NoteViewModel(
+                        RoomNotesRepository(AppDb.getInstance(requireContext().applicationContext).noteDao)
+                    )
+                }
+            }
         }
 
         val id = arguments?.getLong(ARG_NOTE_ID) ?: 0L
@@ -45,7 +50,7 @@ class NoteFragment : Fragment() {
         val createdAt = arguments?.getString(ARG_NOTE_CREATED_AT) ?: ""
         val editedAt = arguments?.getString(ARG_NOTE_EDITED_AT) ?: ""
 
-        if(id != 0L){
+        if (id != 0L) {
             binding.edTitle.setText(title)
             binding.edText.setText(text)
             binding.tvCreatedAt.text = createdAt
@@ -53,34 +58,49 @@ class NoteFragment : Fragment() {
         }
 
 
-        binding.toolbarNote.setOnMenuItemClickListener {menuItem ->
-            when(menuItem.itemId){
-                R.id.menu_save ->{
+        binding.toolbarNote.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.menu_save -> {
                     val created: String
                     val edited: String
-                    if(createdAt == ""){
+                    if (createdAt == "") {
                         created = LocalDate.now().toString()
                         edited = created
-                    }
-                    else{
+                    } else {
                         created = createdAt
                         edited = LocalDate.now().toString()
                     }
-                    if(binding.edTitle.text.toString().isBlank()){
-                        Toast.makeText(context, context?.getString(R.string.empty_text_error), Toast.LENGTH_SHORT).show()
-                    }else{
-                        viewModel.saveNote(Note(id, binding.edTitle.text.toString(), binding.edText.text.toString(), created, edited))
+                    if (binding.edTitle.text.toString().isBlank()) {
+                        Toast.makeText(
+                            context,
+                            context?.getString(R.string.empty_text_error),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        viewModel.saveNote(
+                            Note(
+                                id,
+                                binding.edTitle.text.toString(),
+                                binding.edText.text.toString(),
+                                created,
+                                edited
+                            )
+                        )
                         changeFragment()
                     }
                     true
                 }
-                R.id.menu_delete ->{
-                    if(id != 0L){
-                    viewModel.delete(id)
-                        changeFragment()}
-                    else{changeFragment()}
+
+                R.id.menu_delete -> {
+                    if (id != 0L) {
+                        viewModel.delete(id)
+                        changeFragment()
+                    } else {
+                        changeFragment()
+                    }
                     true
                 }
+
                 else -> false
             }
         }
@@ -89,7 +109,7 @@ class NoteFragment : Fragment() {
         return binding.root
     }
 
-    private fun changeFragment(){
+    private fun changeFragment() {
         parentFragmentManager.beginTransaction()
             .replace(R.id.container, NotesListFragment())
             .commit()

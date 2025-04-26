@@ -2,14 +2,13 @@ package com.myschool.app1mvvm.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ListAdapter
-import com.myschool.app1mvvm.R
 import com.myschool.app1mvvm.databinding.ItemNoteBinding
 import com.myschool.app1mvvm.model.Note
 
 
-class NotesAdapter(private val listener: NoteListener): ListAdapter<Note,NotesViewHolder>(NoteDiffCallback()) {
+class NotesAdapter(private val listener: NoteListener) :
+    ListAdapter<Note, NotesViewHolder>(NoteDiffCallback()) {
 
     interface NoteListener {
         fun onFavoriteClicked(note: Note)

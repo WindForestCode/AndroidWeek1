@@ -5,9 +5,10 @@ import com.myschool.app1mvvm.R
 import com.myschool.app1mvvm.databinding.ItemNoteBinding
 import com.myschool.app1mvvm.model.Note
 
-class NotesViewHolder(private val binding: ItemNoteBinding): RecyclerView.ViewHolder(binding.root) {
+class NotesViewHolder(private val binding: ItemNoteBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(note: Note){
+    fun bind(note: Note) {
         binding.tvNoteTitle.text = note.title
         binding.tvNotetext.text = note.text
         binding.tvDate.text = note.editedAt
@@ -16,11 +17,10 @@ class NotesViewHolder(private val binding: ItemNoteBinding): RecyclerView.ViewHo
 
     }
 
-    private fun updateFavorite(isFavorite: Boolean){
-        if(isFavorite){
+    private fun updateFavorite(isFavorite: Boolean) {
+        if (isFavorite) {
             binding.imageFavorite.setImageResource(R.drawable.ic_bookmark_24)
-        }
-        else{
+        } else {
             binding.imageFavorite.setImageResource(R.drawable.ic_bookmark_border_24)
         }
     }

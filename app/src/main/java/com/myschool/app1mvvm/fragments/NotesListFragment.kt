@@ -37,14 +37,14 @@ class NotesListFragment : Fragment() {
                 .commit()
         }
 
-        val viewModel by activityViewModels<NoteViewModel>{
+        val viewModel by activityViewModels<NoteViewModel> {
             viewModelFactory {
-                initializer { NoteViewModel( RoomNotesRepository(AppDb.getInstance(requireContext().applicationContext).noteDao)) }
+                initializer { NoteViewModel(RoomNotesRepository(AppDb.getInstance(requireContext().applicationContext).noteDao)) }
             }
         }
 
         val adapter = NotesAdapter(
-            object : NotesAdapter.NoteListener{
+            object : NotesAdapter.NoteListener {
                 override fun onFavoriteClicked(note: Note) {
                     viewModel.favorite(note.id)
                 }
@@ -70,17 +70,22 @@ class NotesListFragment : Fragment() {
         )
 
         binding.toolbarNotesList.setOnMenuItemClickListener { menuItem ->
-            when(menuItem.itemId){
+            when (menuItem.itemId) {
                 R.id.menu_faq -> {
-                    Toast.makeText(context, context?.getString(R.string.faq_text), Toast.LENGTH_SHORT).show()
-            true
+                    Toast.makeText(
+                        context,
+                        context?.getString(R.string.faq_text),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    true
                 }
+
                 else -> false
 
             }
 
         }
-        binding.rcView.layoutManager = GridLayoutManager(requireContext(),2)
+        binding.rcView.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rcView.adapter = adapter
         binding.rcView.addItemDecoration(
             OffsetDecoration(resources.getDimensionPixelSize(R.dimen.small_spacing))
@@ -88,7 +93,7 @@ class NotesListFragment : Fragment() {
 
         viewModel.uiState
             .flowWithLifecycle(lifecycle)
-            .onEach{adapter.submitList(it.note)}
+            .onEach { adapter.submitList(it.note) }
             .launchIn(viewLifecycleOwner.lifecycleScope)
         return binding.root
     }

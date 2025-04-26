@@ -7,19 +7,19 @@ import androidx.room.RoomDatabase
 import com.myschool.app1mvvm.model.NoteEntity
 
 @Database(entities = [NoteEntity::class], version = 1)
-abstract class AppDb: RoomDatabase() {
+abstract class AppDb : RoomDatabase() {
     abstract val noteDao: NoteDao
 
-    companion object{
+    companion object {
         @Volatile
         private var INSTANCE: AppDb? = null
-        fun getInstance(context: Context): AppDb{
-            INSTANCE?.let{ return it }
+        fun getInstance(context: Context): AppDb {
+            INSTANCE?.let { return it }
 
             val application = context.applicationContext
 
-            synchronized(this){
-                INSTANCE?.let{ return it }
+            synchronized(this) {
+                INSTANCE?.let { return it }
             }
 
             val appDb = Room.databaseBuilder(application, AppDb::class.java, "app_db")

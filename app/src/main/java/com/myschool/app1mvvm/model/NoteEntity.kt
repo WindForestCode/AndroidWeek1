@@ -18,10 +18,10 @@ data class NoteEntity(
     @ColumnInfo(name = "editedAt")
     val editedAt: String,
     @ColumnInfo(name = "isFavorite")
-    val isFavorite: Boolean = false,)
-{
-    companion object{
-        fun fromNote(note: Note): NoteEntity = with(note){
+    val isFavorite: Boolean = false,
+) {
+    companion object {
+        fun fromNote(note: Note): NoteEntity = with(note) {
             NoteEntity(
                 id = id,
                 title = title,
@@ -32,6 +32,7 @@ data class NoteEntity(
             )
         }
     }
+
     fun toNote(): Note = Note(
         id = id,
         title = title,

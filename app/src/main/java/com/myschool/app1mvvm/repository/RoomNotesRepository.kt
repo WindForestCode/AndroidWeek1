@@ -6,10 +6,10 @@ import com.myschool.app1mvvm.model.NoteEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class RoomNotesRepository(private val dao: NoteDao): NotesRepository {
+class RoomNotesRepository(private val dao: NoteDao) : NotesRepository {
 
     override fun getNotes(): Flow<List<Note>> = dao.getAll()
-        .map{
+        .map {
             it.map(NoteEntity::toNote)
         }
 
@@ -18,7 +18,7 @@ class RoomNotesRepository(private val dao: NoteDao): NotesRepository {
     }
 
     override fun saveNote(note: Note) {
-       dao.save(NoteEntity.fromNote(note))
+        dao.save(NoteEntity.fromNote(note))
     }
 
     override fun deleteNote(id: Long) {

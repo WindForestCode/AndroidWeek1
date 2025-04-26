@@ -11,14 +11,14 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 
-class NoteViewModel(private val repository: NotesRepository): ViewModel() {
+class NoteViewModel(private val repository: NotesRepository) : ViewModel() {
     private val _uiState = MutableStateFlow(NoteUiState())
     val uiState: StateFlow<NoteUiState> = _uiState.asStateFlow()
 
-    init{
+    init {
         repository.getNotes()
             .onEach { notes ->
-                _uiState.update{
+                _uiState.update {
                     it.copy(note = notes)
                 }
             }
@@ -28,11 +28,12 @@ class NoteViewModel(private val repository: NotesRepository): ViewModel() {
     fun saveNote(note: Note) {
         repository.saveNote(note)
     }
-    fun favorite(id: Long){
+
+    fun favorite(id: Long) {
         repository.toFavorite(id)
     }
 
-    fun delete(id: Long){
+    fun delete(id: Long) {
         repository.deleteNote(id)
     }
 }
