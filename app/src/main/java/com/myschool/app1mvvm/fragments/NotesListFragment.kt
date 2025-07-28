@@ -33,7 +33,6 @@ class NotesListFragment : Fragment() {
         binding.buttonAddNote.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.container, NoteFragment())
-                .addToBackStack(null)
                 .commit()
         }
 
